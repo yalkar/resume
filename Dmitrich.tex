@@ -1,0 +1,120 @@
+% !TeX program = xelatex
+% Сборка: xelatex Dmitrich.tex
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[letterpaper,margin=0.5in,bottom=0.42in]{geometry}
+\usepackage{fontspec}
+\setmainfont{NewCM10-Regular.otf}[
+  BoldFont       = NewCM10-Bold.otf,
+  ItalicFont     = NewCM10-Italic.otf,
+  BoldItalicFont = NewCM10-BoldItalic.otf
+]
+\usepackage{babel}
+\babelprovide[main,import]{russian}
+\usepackage{enumitem}
+\usepackage[unicode,hidelinks]{hyperref}
+\hypersetup{
+  pdftitle  = {Медведев Даниил — резюме},
+  pdfauthor = {Даниил Медведев},
+  pdflang   = {ru-RU}
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\raggedright
+\setlist[itemize]{
+  leftmargin=0.50in, labelsep=0.09in, rightmargin=0.09in,
+  label={\raisebox{0.08ex}{\scriptsize\textbullet}},
+  topsep=2pt, itemsep=1.1pt, parsep=0pt, partopsep=0pt
+}
+
+\newcommand{\cvsection}[1]{%
+  \par\addvspace{10pt}%
+  {\Large\scshape #1\par}\nobreak
+  \vspace{4.8pt}\hrule height 0.4pt\nobreak\vspace{4pt}%
+}
+\newcommand{\entry}[2]{%
+  \par\addvspace{3pt}\hspace*{0.15in}\textbf{#1}\hfill #2\hspace*{0.08in}\par
+}
+\newcommand{\detail}[2]{%
+  \hspace*{0.15in}\textit{#1}\hfill\textit{#2}\hspace*{0.08in}\par
+}
+\newcommand{\linktext}[2]{\href{#1}{\underline{#2}}}
+
+\begin{document}
+
+{\centering
+  {\fontsize{25}{29}\selectfont\scshape Медведев Даниил\par}
+  \vspace{8pt}
+  \linktext{mailto:yalkar2006@mail.ru}{yalkar2006@mail.ru}
+  \textbar{}
+  \linktext{https://t.me/yalkar}{https://t.me/yalkar}
+  \textbar{}
+  \linktext{https://github.com/yalkar}{https://github.com/yalkar}\par
+}
+\vspace{4pt}
+
+\cvsection{Образование}
+\entry{Высшая школа экономики (НИУ ВШЭ, МИЭМ)}{Россия, Москва}
+\detail{Информационная безопасность, бакалавриат, 4-й курс}{2023--2027}
+\begin{itemize}
+  \item \textbf{Релевантные курсы} — администрирование систем и сетей, криптографические
+    методы защиты информации, разработка защищённых приложений и протоколы безопасности,
+    основы криптографии, алгоритмизация и программирование, администрирование ОС Astra Linux,
+    системы и сети передачи информации.
+\end{itemize}
+
+\cvsection{Опыт работы}
+\entry{Специалист по информационной безопасности}{По настоящее время}
+\detail{Банковский сектор}{Безопасность партнёрских подключений}
+\begin{itemize}
+  \item Собрал на Python (pandas) витрину партнёрских VPN-подключений. Сопоставил
+    YAML-реестры из GitLab со сведениями о договорах и правилами межсетевых экранов.
+  \item Настроил оценку риска туннелей по направлению трафика, передаче персональных
+    данных и доступу к критичным ресурсам. Добавил проверку признаков файлового обмена.
+  \item Создал BI-дашборд с ежедневной историей. По метрикам на SQL команда отслеживает
+    просроченные доступы и подключения без ссылки на договор.
+  \item Подключил данные NDR для выявления неиспользуемых доступов и настроил в n8n
+    создание задач на их отзыв в Jira.
+  \item Автоматизировал создание merge request для обновления реестра в GitLab.
+\end{itemize}
+
+\cvsection{Проекты}
+\entry{Стеганография печатных карточек}
+  {\small\linktext{https://github.com/yalkar/watermark-method-stage8}{Код и результаты}\quad\normalsize 2026}
+\begin{itemize}
+  \item Реализовал на Python метод Thongkor (блочное DCT) для встраивания и извлечения
+    водяных знаков. Адаптировал метод на основе преобразования Фурье (DFT) для многобитных меток.
+  \item На 100 изображениях проверил влияние JPEG-сжатия, шума и поворота. На 150 снимках
+    50 карточек измерил долю битовых ошибок (BER) при извлечении 256-битной метки после печати.
+\end{itemize}
+
+\entry{Система обработки событий ИБ}
+  {\small\linktext{https://github.com/yalkar/security-event-processing-system}{Код на GitHub}\quad\normalsize 2026}
+\begin{itemize}
+  \item Разработал сервис на FastAPI с очередью RabbitMQ, хранилищем PostgreSQL и кэшем
+    Redis. Разделил контейнеры на четыре сети и проверил восстановление базы из резервной копии.
+\end{itemize}
+
+\entry{Исследование безопасности в IoT-устройствах}{2025}
+\begin{itemize}
+  \item Систематизировал основные угрозы безопасности IoT и способы их предотвращения.
+  \item Изучил сетевые сервисы и трафик с помощью Nmap и Wireshark, подготовил
+    рекомендации по защите IoT-устройств.
+\end{itemize}
+
+\cvsection{Технические навыки}
+\begin{list}{}{\setlength{\leftmargin}{0.15in}\setlength{\rightmargin}{0.08in}%
+  \setlength{\topsep}{0pt}\setlength{\itemsep}{1pt}\setlength{\parsep}{0pt}}
+  \item \textbf{Языки программирования и запросов} — Python, C++, SQL.
+  \item \textbf{Рабочие инструменты} — pandas, Git, GitLab API, YAML, n8n, Jira,
+    VPN/IPsec, правила межсетевых экранов, NDR, NetBox (pynetbox).
+  \item \textbf{Сети и защита (учебная практика)} — TCP/IP, ACL, Wireshark, Nmap,
+    Suricata (IDS/IPS), Sigma, Metasploit.
+  \item \textbf{Инфраструктура и разработка (проекты)} — Linux (Astra Linux), Docker Compose,
+    GitLab CI/CD, Kubernetes (NetworkPolicy), FastAPI, REST API, SOAP, PostgreSQL, Redis,
+    RabbitMQ, NumPy, OpenCV.
+\end{list}
+
+\end{document}
